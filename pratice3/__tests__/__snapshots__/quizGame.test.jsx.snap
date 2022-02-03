@@ -10,8 +10,17 @@ exports[`Quiz game Shows answer status 1`] = `
 exports[`Quiz game Shows question 1`] = `
 "<div>
   <h1>How are you?</h1>
-  <div><button>Good</button></div>
-  <div><button>Bad</button></div>
-  <div><button>OK</button></div>
+  <div data-testid=\\"answer_a\\"><button>Good</button></div>
+  <div data-testid=\\"answer_b\\"><button>Bad</button></div>
+  <div data-testid=\\"answer_c\\"><button>OK</button></div>
+</div>"
+`;
+
+exports[`Quiz game records correct answer 1`] = `
+"<div>
+  <h1>How are you?</h1>
+  <div data-testid=\\"answer_a\\"><button>Good</button></div>
+  <div data-testid=\\"answer_b\\"><button>Bad</button></div>
+  <div data-testid=\\"answer_c\\"><button>OK</button></div>
 </div>"
 `;
