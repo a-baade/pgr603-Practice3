@@ -6,3 +6,12 @@ exports[`Quiz game Shows answer status 1`] = `
   <div data-testid=\\"status\\">You have answered 3 of 10 correctly</div><a href=\\"/question\\"><button>Take a quiz</button></a>
 </div>"
 `;
+
+exports[`Quiz game Shows question 1`] = `
+"<div>
+  <h1>How are you?</h1>
+  <div><button>Good</button></div>
+  <div><button>Bad</button></div>
+  <div><button>OK</button></div>
+</div>"
+`;

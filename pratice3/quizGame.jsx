@@ -1,6 +1,8 @@
-import React, {useState} from "react";
-import {BrowserRouter,Link, Route, Routes, useNavigate} from "react-router-dom";
+import React, {useState, useContext} from "react";
+import {Link, Route, Routes, useNavigate} from "react-router-dom";
 import {isCorrectAnswer, randomQuestion} from "./questions";
+
+export const QuestionContext = React.createContext({randomQuestion})
 
 export function FrontPage({correctAnswers, questionsAnswered}) {
     return <div>
@@ -24,6 +26,7 @@ function ShowQuestion({setCorrectAnswers, setQuestionsAnswered}) {
     }
 
     const navigate = useNavigate();
+    const {randomQuestion} = useContext(QuestionContext);
     const [question] = useState(randomQuestion());
     return <div>
         <h1>{question.question}</h1>
@@ -50,12 +53,12 @@ function ShowAnswer(){
 export function QuizGame() {
     const [questionsAnswered, setQuestionsAnswered] = useState(0);
     const [correctAnswers, setCorrectAnswers] = useState(0);
-    return <BrowserRouter>
+    return (
         <Routes>
             <Route path={"/"} element={<FrontPage questionsAnswered={questionsAnswered} correctAnswers={correctAnswers}/>} />
             <Route path={"/question"} element={<ShowQuestion setQuestionsAnswered={setQuestionsAnswered}
                                                              setCorrectAnswers={setCorrectAnswers}/>} />
             <Route path={"/answer/*"} element={<ShowAnswer/>} />
         </Routes>
-    </BrowserRouter>;
+    );
 }
