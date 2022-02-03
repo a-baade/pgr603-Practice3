@@ -3,18 +3,21 @@ import ReactDom from "react-dom";
 import {BrowserRouter,Link, Route, Routes, useNavigate} from "react-router-dom";
 import {isCorrectAnswer, randomQuestion} from "./questions";
 
-function FrontPage() {
+function FrontPage({correctAnswers, questionsAnswered}) {
     return <div>
         <h1>Quiz App</h1>
+        <div>You have answered {correctAnswers} of {questionsAnswered} correctly</div>
         <Link to={"question"}>
             <button>Take a quiz</button>
         </Link>
     </div>;
 }
 
-function ShowQuestion() {
+function ShowQuestion({setCorrectAnswers, setQuestionsAnswered}) {
     function handleAnswer(answer) {
+        setQuestionsAnswered(q => q + 1);
         if (isCorrectAnswer(question, answer)) {
+            setCorrectAnswers(q => q + 1);
             navigate("/answer/correct");
         } else {
             navigate("/answer/wrong");
@@ -46,11 +49,14 @@ function ShowQuestion() {
 
 
 function QuizGame() {
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
+    const [correctAnswers, setCorrectAnswers] = useState(0);
     return <BrowserRouter>
         <Routes>
-            <Route path={"/"} element={<FrontPage />} />
-            <Route path={"/question"} element={<ShowQuestion />} />
-            <Route path={"/answer/*"} element={<ShowAnswer />} />
+            <Route path={"/"} element={<FrontPage questionsAnswered={questionsAnswered} correctAnswers={correctAnswers}/>} />
+            <Route path={"/question"} element={<ShowQuestion setQuestionsAnswered={setQuestionsAnswered}
+                                                             setCorrectAnswers={setCorrectAnswers}/>} />
+            <Route path={"/answer/*"} element={<ShowAnswer/>} />
         </Routes>
     </BrowserRouter>;
 }
