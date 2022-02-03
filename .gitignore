@@ -1,2 +1,5 @@
-# Project exclude paths
+
+/pratice3/.parcel-cache/
+/pratice3/.idea/
+/pratice3/dist/
 /pratice3/node_modules/
