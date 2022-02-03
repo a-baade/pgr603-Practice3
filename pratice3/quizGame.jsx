@@ -2,10 +2,10 @@ import React, {useState} from "react";
 import {BrowserRouter,Link, Route, Routes, useNavigate} from "react-router-dom";
 import {isCorrectAnswer, randomQuestion} from "./questions";
 
-function FrontPage({correctAnswers, questionsAnswered}) {
+export function FrontPage({correctAnswers, questionsAnswered}) {
     return <div>
         <h1>Quiz App</h1>
-        <div>You have answered {correctAnswers} of {questionsAnswered} correctly</div>
+        <div data-testid={"status"}>You have answered {correctAnswers} of {questionsAnswered} correctly</div>
         <Link to={"question"}>
             <button>Take a quiz</button>
         </Link>

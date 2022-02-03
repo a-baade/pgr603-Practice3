@@ -1,0 +1,17 @@
+import React from "react";
+import ReactDom from "react-dom";
+import {FrontPage} from "../quizGame";
+import {MemoryRouter} from "react-router-dom";
+
+
+describe("Quiz game", () => {
+    it("Shows answer status",() => {
+        const element = document.createElement("div");
+        ReactDom.render(
+            <MemoryRouter><FrontPage correctAnswers={3} questionsAnswered={10} /></MemoryRouter>,
+            element
+        );
+        expect(element.querySelector("[data-testid=status]").textContent)
+            .toEqual("You have answered 3 of 10 correctly")
+    })
+})
